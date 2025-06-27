@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Interactive Guide to the American Court System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F0F4F8; 
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-box {
+            border: 2px solid #00A8E8; 
+            background-color: #ffffff;
+            color: #00171F;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+        .flow-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        .flow-arrow {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            color: #007EA7;
+            margin: 0.5rem 0;
+        }
+        .definition-card {
+            background-color: white;
+            border-left: 5px solid #00A8E8;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+            height: 100%;
+        }
+        .sticky-nav {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="text-[#00171F]">
+
+    <header class="bg-[#003459] text-white text-center py-16 px-4">
+        <h1 class="text-4xl md:text-6xl font-black tracking-tight">The American Court System</h1>
+        <p class="mt-4 text-lg md:text-xl max-w-3xl mx-auto text-[#D3D3D3]">A visual journey through the dual structures of federal and state courts, with a special focus on Georgia.</p>
+    </header>
+    
+    <nav class="sticky-nav">
+        <div class="container mx-auto px-4">
+            <ul class="flex justify-center space-x-4 md:space-x-8 text-sm md:text-base font-bold text-[#003459]">
+                <li><a href="#foundations" class="hover:text-[#00A8E8] transition-colors">Foundations</a></li>
+                <li><a href="#federal" class="hover:text-[#00A8E8] transition-colors">Federal Courts</a></li>
+                <li><a href="#georgia" class="hover:text-[#00A8E8] transition-colors">Georgia Courts</a></li>
+                <li><a href="#protections" class="hover:text-[#00A8E8] transition-colors">Protections</a></li>
+                <li><a href="#pathways" class="hover:text-[#00A8E8] transition-colors">Pathways</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="foundations" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003459] mb-8">Foundations of American Justice</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-[#007EA7]">The Dual Court System</h3>
+                    <p class="mb-4">The U.S. judicial system is unique, featuring two parallel court systems: one federal and fifty state systems. This structure, a cornerstone of American federalism, divides legal authority and allows states to tailor laws to their communities while upholding federal law.</p>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="dualSystemChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-4 text-center text-gray-600">This chart illustrates the massive caseload difference, with state courts handling the vast majority of legal disputes in the nation.</p>
+                </div>
+                
+                <div class="space-y-6">
+                    <div class="definition-card">
+                        <h4 class="text-xl font-bold mb-2">Original Jurisdiction</h4>
+                        <p>The authority of a court to hear a case for the very first time. This is where the trial happens, evidence is presented, and a factual record is created. It answers the question: "What happened?"</p>
+                    </div>
+                    <div class="definition-card">
+                         <h4 class="text-xl font-bold mb-2">Appellate Jurisdiction</h4>
+                        <p>The power of a higher court to review decisions made by lower courts. It does not re-try the case but looks for legal errors. It answers the question: "Was the law applied correctly?"</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                 <div class="definition-card">
+                    <h4 class="text-xl font-bold mb-2">Trial Courts</h4>
+                    <p>The courts of first instance where legal disputes are initially heard and decided. Their primary function is fact-finding: hearing testimony, admitting evidence, and determining what happened. Both federal (U.S. District Courts) and state systems have trial courts.</p>
+                </div>
+                <div class="definition-card">
+                    <h4 class="text-xl font-bold mb-2">Appellate Court</h4>
+                    <p>A court that hears appeals from a lower court. Its purpose is not to retry a case, but to review the trial court's proceedings for errors of law. They ensure the law was applied fairly and correctly. The U.S. Courts of Appeals are federal appellate courts.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="federal" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003459] mb-8">The Federal Court Structure</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">Established by Article III of the Constitution, the federal judiciary has a clear, three-tiered hierarchy. Its jurisdiction is limited to cases involving the Constitution, federal laws, or specific parties like the U.S. government.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div class="definition-card">
+                    <h4 class="text-xl font-bold mb-2">U.S. Supreme Court</h4>
+                    <p>The highest court in the federal system and the final arbiter of federal law. Composed of nine justices, it has final appellate jurisdiction over all federal and state court cases involving issues of federal law.</p>
+                </div>
+                <div class="definition-card">
+                    <h4 class="text-xl font-bold mb-2">U.S. Court of Appeals</h4>
+                    <p>The intermediate level in the federal system. These 13 courts review decisions from the district courts within their circuit to check for legal errors. They do not hold trials.</p>
+                </div>
+                <div class="definition-card">
+                    <h4 class="text-xl font-bold mb-2">U.S. District Courts</h4>
+                    <p>The trial courts of the federal system. There are 94 federal districts where cases under federal law are first filed, trials are held, and evidence is presented.</p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-lg shadow-md p-6 mt-12">
+                <h3 class="text-2xl font-bold mb-4 text-center text-[#007EA7]">U.S. Supreme Court: Discretionary Review</h3>
+                <p class="text-center mb-4">The Supreme Court doesn't hear every case. It uses the "Writ of Certiorari" to select fewer than 100 cases annually from over 7,000 petitions, focusing on those with profound national importance.</p>
+                <div class="chart-container h-80">
+                    <canvas id="supremeCourtCasesChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="georgia" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003459] mb-8">A Deep Dive: The Georgia Court System</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">Georgia provides a fascinating example of a complex, multi-tiered state court system. It features two appellate courts and seven distinct classes of trial courts, each with specialized jurisdiction.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-[#007EA7]">Georgia's Trial Court Landscape</h3>
+                    <p class="mb-4">Unlike the unified federal system, Georgia favors specialization. This chart shows the seven types of trial courts and their specific areas of focus, from minor civil claims to the most serious felonies.</p>
+                    <div class="chart-container h-96">
+                        <canvas id="georgiaTrialCourtsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold mb-4 text-[#007EA7]">Georgia's Appellate Courts</h3>
+                    <p class="mb-6">Appeals from trial courts are directed to one of two appellate courts, depending on the subject matter.</p>
+                    <div class="space-y-4">
+                        <div class="definition-card">
+                            <h4 class="font-bold text-lg">State Appeals Courts</h4>
+                            <p class="text-sm">These are a state's intermediate appellate courts, serving as the first level of review for most cases. In Georgia, the <span class="font-bold">Court of Appeals of Georgia</span> fulfills this role, handling a high volume of cases to correct legal errors from trial courts.</p>
+                        </div>
+                        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+                            <h4 class="font-bold text-lg">Supreme Court of Georgia</h4>
+                            <p class="text-sm">The state's highest court has exclusive jurisdiction over the most fundamental legal questions, such as constitutionality of laws, election contests, and capital felonies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="protections" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003459] mb-8">Bedrock Constitutional Protections</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">The entire judicial process rests on guarantees in the U.S. Constitution that ensure fairness and prevent arbitrary government action.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="definition-card">
+                    <h3 class="text-2xl font-bold mb-2">Due Process of Law</h3>
+                    <p class="mb-4">A fundamental principle from the 5th and 14th Amendments ensuring fundamental fairness. It guarantees that no one can be deprived of "life, liberty, or property" without the government following fair rules and procedures.</p>
+                    <ul class="list-disc list-inside space-y-2">
+                        <li><span class="font-semibold">Procedural:</span> Guarantees NOTICE and an OPPORTUNITY TO BE HEARD.</li>
+                        <li><span class="font-semibold">Substantive:</span> Protects fundamental rights from government interference.</li>
+                    </ul>
+                </div>
+                <div class="definition-card">
+                    <h3 class="text-2xl font-bold mb-2">Equal Protection of the Laws</h3>
+                    <p class="mb-4">A command from the 14th Amendment requiring that the law be applied impartially. It means similarly situated people must be treated alike, preventing improper government discrimination.</p>
+                     <ul class="list-disc list-inside space-y-2">
+                        <li><span class="font-semibold">Key Idea:</span> Government cannot draw distinctions between people based on irrelevant differences.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="pathways" class="my-12 scroll-mt-24">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-[#003459] mb-8">The Flow of Justice: Case Pathways</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">How does a case move through the system? The path depends on the type of case and where it starts. The most critical pathway is the narrow bridge from a state's highest court to the U.S. Supreme Court.</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#007EA7]">Georgia State System</h3>
+                    <div class="space-y-4">
+                        <div class="flow-box">Superior or State/Limited Courts (Trial)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">GA Court of Appeals OR GA Supreme Court</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box bg-[#003459] text-white">GA Supreme Court (Highest State Court)</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-bold text-center mb-6 text-[#007EA7]">Federal System & State-to-Federal Bridge</h3>
+                    <div class="space-y-4">
+                        <div class="flow-box">U.S. District Court (Trial)</div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="flow-box">U.S. Court of Appeals</div>
+                        <div class="flow-arrow">↓</div>
+                         <div class="relative flow-box bg-[#00A8E8] text-white">
+                            <span class="absolute -left-28 top-1/2 -translate-y-1/2 hidden lg:inline font-bold text-5xl text-[#007EA7] animate-pulse">→</span>
+                            U.S. Supreme Court
+                            <p class="text-xs font-normal mt-1">Hears appeals from Federal Circuit Courts AND from State Supreme Courts on issues of FEDERAL law only.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        const vibrantBlues = {
+            primary: '#00A8E8', 
+            secondary: '#007EA7',
+            dark: '#003459',
+            darkest: '#00171F', 
+            accent: '#00A8E8', 
+            lightBg: '#F0F4F8'
+        };
+
+        function wrapLabels(label, maxWidth) {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).length > maxWidth) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine += ' ' + word;
+                }
+            });
+            lines.push(currentLine.trim());
+            return lines.map(l => l.trim()).filter(l => l.length > 0);
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+                return label.join(' ');
+            } else {
+                return label;
+            }
+        };
+
+        const sharedTooltipOptions = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    },
+                    backgroundColor: 'rgba(0, 23, 31, 0.9)',
+                    titleFont: { size: 14, weight: 'bold' },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    cornerRadius: 4,
+                    displayColors: true,
+                }
+            }
+        };
+        
+        new Chart(document.getElementById('dualSystemChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['State Court Cases', 'Federal Court Cases'],
+                datasets: [{
+                    label: 'Case Distribution',
+                    data: [90, 10],
+                    backgroundColor: [vibrantBlues.primary, vibrantBlues.dark],
+                    borderColor: vibrantBlues.lightBg,
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            font: { size: 14 }
+                        }
+                    },
+                    title: {
+                        display: false
+                    },
+                    ...sharedTooltipOptions.plugins
+                }
+            }
+        });
+
+        new Chart(document.getElementById('supremeCourtCasesChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Petitions Filed Annually', 'Cases Heard (Cert Granted)'],
+                datasets: [{
+                    label: 'Number of Cases',
+                    data: [7000, 95], 
+                    backgroundColor: [vibrantBlues.secondary, vibrantBlues.primary],
+                    borderColor: [vibrantBlues.secondary, vibrantBlues.primary],
+                    borderWidth: 1,
+                    barPercentage: 0.5,
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        type: 'logarithmic',
+                        ticks: {
+                            callback: function(value, index, values) {
+                                if (value === 10000 || value === 1000 || value === 100 || value === 10 || value === 1) {
+                                    return value.toLocaleString();
+                                }
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false
+                    },
+                    ...sharedTooltipOptions.plugins
+                }
+            }
+        });
+
+        const georgiaCourtLabels = [
+            'Superior Court (General; Felonies, Divorce, Land)', 
+            'State Court (Misdemeanors, Civil Cases)',
+            'Juvenile Court (Children under 17/18)', 
+            'Probate Court (Wills, Estates, Licenses)',
+            'Magistrate Court (Civil < $15k, Warrants)',
+            'Municipal Court (City Ordinances, Traffic)',
+            'State-wide Business Court (Complex Commercial)'
+        ];
+
+        new Chart(document.getElementById('georgiaTrialCourtsChart'), {
+            type: 'bar',
+            data: {
+                labels: georgiaCourtLabels.map(label => wrapLabels(label, 20)),
+                datasets: [{
+                    label: 'Scope of Jurisdiction',
+                    data: [7, 6, 5, 4, 3, 2, 1],
+                    backgroundColor: [
+                        vibrantBlues.dark,
+                        vibrantBlues.secondary,
+                        vibrantBlues.primary,
+                        '#48cae4',
+                        '#90e0ef',
+                        '#ade8f4',
+                        '#caf0f8'
+                    ],
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: false,
+                    },
+                    ...sharedTooltipOptions.plugins
+                },
+                scales: {
+                    x: {
+                        display: false
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
